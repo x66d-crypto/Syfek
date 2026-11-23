@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mit o Syzyfie</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background:
+                radial-gradient(circle at 12% 18%, rgba(255, 110, 199, 0.28), transparent 42%),
+                radial-gradient(circle at 88% 12%, rgba(0, 229, 255, 0.26), transparent 45%),
+                radial-gradient(circle at 75% 85%, rgba(255, 196, 0, 0.16), transparent 40%),
+                linear-gradient(155deg, #070913 0%, #10162b 48%, #1a0d29 100%);
+            background-attachment: fixed;
+            color: #f4f7ff;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(110deg, rgba(9, 13, 30, 0.96) 0%, rgba(29, 16, 56, 0.96) 55%, rgba(12, 34, 66, 0.96) 100%);
+            border-bottom: 4px solid #ff6ec7;
+            box-shadow: 0 6px 28px rgba(0, 0, 0, 0.65), 0 2px 14px rgba(255, 110, 199, 0.25);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #ffffff 0%, #67e8f9 45%, #ff8ad4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #b7c5e8;
+            font-size: 1.05rem;
+        }
+
+        nav {
+            background: rgba(10, 13, 26, 0.92);
+            backdrop-filter: blur(10px);
+            padding: 12px 16px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 229, 255, 0.25);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+        }
+
+        nav a {
+            color: #dce6ff;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            padding: 4px 2px;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        nav a:hover {
+            color: #00e5ff;
+            border-bottom-color: #ff6ec7;
+        }
+
+        .btn-tryb {
+            background: linear-gradient(90deg, #00c6ff 0%, #ff47b3 100%);
+            color: #070913;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 15px;
+            box-shadow: 0 0 16px rgba(255, 71, 179, 0.35);
+            transition: transform 0.15s, box-shadow 0.2s;
+        }
+
+        .btn-tryb:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 22px rgba(0, 229, 255, 0.55);
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .karta {
+            background: linear-gradient(145deg, rgba(16, 22, 45, 0.92) 0%, rgba(28, 17, 48, 0.92) 100%);
+            border-left: 5px solid #00e5ff;
+            border-top: 1px solid rgba(255, 110, 199, 0.25);
+            border-right: 1px solid rgba(0, 229, 255, 0.18);
+            border-bottom: 1px solid rgba(0, 229, 255, 0.18);
+            border-radius: 6px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+        }
+
+        .karta:nth-child(even) {
+            border-left-color: #ff6ec7;
+        }
+
+        .karta h2 {
+            font-size: 1.55rem;
+            background: linear-gradient(90deg, #ffffff 0%, #67e8f9 55%, #ff8ad4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 110, 199, 0.35);
+            padding-bottom: 8px;
+        }
+
+        .karta p {
+            margin-bottom: 12px;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: #dce6ff;
+        }
+
+        li strong {
+            color: #67e8f9;
+        }
+
+        .ramka-info {
+            background: linear-gradient(90deg, rgba(0, 229, 255, 0.12) 0%, rgba(255, 110, 199, 0.14) 100%);
+            border-left: 4px solid #ffc400;
+            border-top: 1px dashed rgba(255, 110, 199, 0.45);
+            border-right: 1px dashed rgba(0, 229, 255, 0.45);
+            border-bottom: 1px dashed rgba(0, 229, 255, 0.45);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .ramka-info strong {
+            color: #ffc400;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: rgba(9, 13, 28, 0.72);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid rgba(103, 232, 249, 0.24);
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: linear-gradient(90deg, rgba(0, 198, 255, 0.32) 0%, rgba(255, 71, 179, 0.32) 100%);
+            color: #ffffff;
+        }
+
+        td strong {
+            color: #ff8ad4;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.025);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #8fa2cf;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 110, 199, 0.3);
+            background: rgba(8, 11, 22, 0.9);
+            margin-top: 40px;
+        }
+
+        /* Tryb prezentacji (slajdy) */
+        body.tryb-slajdy {
+            overflow: hidden;
+        }
+
+        body.tryb-slajdy header,
+        body.tryb-slajdy nav,
+        body.tryb-slajdy footer {
+            display: none;
+        }
+
+        body.tryb-slajdy .container {
+            max-width: 950px;
+            height: 100vh;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body.tryb-slajdy .karta {
+            display: none;
+            width: 100%;
+            min-height: 420px;
+            padding: 40px;
+            font-size: 1.25rem;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 229, 255, 0.16);
+        }
+
+        body.tryb-slajdy .karta.aktywny {
+            display: block;
+        }
+
+        .kontrolki-slajdow {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, rgba(12, 16, 34, 0.96) 0%, rgba(30, 17, 52, 0.96) 100%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid #ff6ec7;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 14px rgba(0, 229, 255, 0.25);
+            gap: 15px;
+            align-items: center;
+        }
+
+        body.tryb-slajdy .kontrolki-slajdow {
+            display: flex;
+        }
+
+        #licznik-slajdow {
+            font-weight: bold;
+            color: #67e8f9;
+        }
+
+        .kontrolki-slajdow button {
+            background: linear-gradient(90deg, #00c6ff 0%, #ff47b3 100%);
+            color: #070913;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .kontrolki-slajdow button.btn-wyjscie {
+            background: linear-gradient(90deg, #283558 0%, #462759 100%);
+            color: #f4f7ff;
+            border: 1px solid rgba(103, 232, 249, 0.35);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mit o Syzyfie</h1>
+        <p>Prezentacja na język polski</p>
+    </header>
+
+    <nav>
+        <a href="#kim-byl">Kim był?</a>
+        <a href="#streszczenie">Co zrobił?</a>
+        <a href="#kara">Kara</a>
+        <a href="#frazeologizm">Syzyfowa praca</a>
+        <a href="#nawiazania">Nawiązania</a>
+        <button class="btn-tryb" onclick="wlaczSlajdy()">Tryb prezentacji (Slajdy)</button>
+    </nav>
+
+    <div class="container">
+
+        <!-- Slajd 1 -->
+        <section id="kim-byl" class="karta aktywny">
+            <h2>1. Kim był Syzyf?</h2>
+            <p><strong>Syzyf</strong> był królem i założycielem bogatego miasta <strong>Korynt</strong> w starożytnej Grecji. Miał żonę Merope.</p>
+            <p>Cechy charakteru Syzyfa:</p>
+            <ul>
+                <li><strong>Sprytny i przebiegły</strong> – potrafił wykiwać nawet bogów z Olimpu.</li>
+                <li><strong>Plotkarz</strong> – nie umiał utrzymać języka za zębami i lubił rozpowiadać sekrety.</li>
+                <li><strong>Odważny, ale też bezczelny</strong> – nie bał się śmierci ani gniewu Zeusa.</li>
+                <li><strong>Dobry władca</strong> – dbał o swoje miasto i jego mieszkańców.</li>
+            </ul>
+            <div class="ramka-info">
+                <strong>Ciekawostka:</strong> Syzyf był ulubieńcem bogów. Często zapraszano go na Olimp na uczty, gdzie jadł ambrozję i pił nektar, dzięki czemu miał być zdrowy i silny.
+            </div>
+        </section>
+
+        <!-- Slajd 2 -->
+        <section id="streszczenie" class="karta">
+            <h2>2. Czym podpadł bogom? (Plan wydarzeń)</h2>
+            <p>Wszystko zaczęło się od tego, że Syzyf podczas uczt na Olimpie podsłuchiwał bogów, a potem opowiadał ich sekrety ludziom na ziemi.</p>
+            <ol>
+                <li><strong>Zdrada sekretu Zeusa:</strong> Syzyf wygadał bogu rzek Asoposowi, że to Zeus porwał jego córkę Eginę.</li>
+                <li><strong>Uwięzienie Tanatosa:</strong> Wściekły Zeus wysłał po Syzyfa boga śmierci – Tanatosa. Syzyf jednak go przechytrzył, związał i zamknął w lochu. Przez to na świecie ludzie przestali umierać.</li>
+                <li><strong>Interwencja Aresa:</strong> Bóg wojny Ares zauważył, że na wojnach nikt nie ginie, więc uwolnił Tanatosa, a ten zabrał Syzyfa do Hadesu.</li>
+                <li><strong>Podstęp z pogrzebem:</strong> Przed śmiercią Syzyf kazał żonie nie robić mu pogrzebu. W Hadesie poskarżył się, że żona go nie szanuje i poprosił o powrót na ziemię tylko na chwilę, żeby ją ukarać.</li>
+                <li><strong>Ucieczka przed śmiercią:</strong> Gdy wrócił na ziemię, wcale nie zamierzał wracać do podziemi i żył sobie dalej w ukryciu przez wiele lat.</li>
+            </ol>
+        </section>
+
+        <!-- Slajd 3 -->
+        <section id="kara" class="karta">
+            <h2>3. Kara w Tartarze</h2>
+            <p>Kiedy bogowie w końcu przypomnieli sobie o Syzyfie, wysłali po niego <strong>Hermesa</strong>, który siłą sprowadził go z powrotem do podziemi.</p>
+            <p>Za oszukiwanie bogów i ucieczkę przed śmiercią Syzyf dostał jedną z najgorszych kar w <strong>Tartarze</strong> (najgłębszej części Hadesu):</p>
+            <div class="ramka-info">
+                <strong>Na czym polegała kara?</strong><br>
+                Syzyf musiał wtaczać na bardzo wysoką i stromą górę ogromny, ciężki głaz. Gdy był już prawie na samym szczycie, kamień zawsze wyślizgiwał mu się z rąk i spadał na sam dół. Syzyf musiał zaczynać wszystko od nowa – i tak przez całą wieczność.
+            </div>
+        </section>
+
+        <!-- Slajd 4 -->
+        <section id="frazeologizm" class="karta">
+            <h2>4. Związek frazeologiczny: „Syzyfowa praca”</h2>
+            <p>Z tego mitu pochodzi bardzo znany związek frazeologiczny, którego używamy do dzisiaj.</p>
+            <div class="ramka-info">
+                <strong>Syzyfowa praca</strong> – oznacza ciężką, mozolną i długą pracę, która nie przynosi żadnych efektów, jest bezcelowa i ciągle trzeba ją zaczynać od nowa.
+            </div>
+            <p style="margin-top: 15px;"><strong>Przykłady z życia codziennego:</strong></p>
+            <ul>
+                <li>Sprzątanie pokoju, gdy młodsze rodzeństwo od razu rozrzuca zabawki.</li>
+                <li>Odśnieżanie chodnika podczas wielkiej śnieżycy.</li>
+                <li>Uczenie się słówek na pamięć bez zrozumienia, które od razu się zapomina.</li>
+            </ul>
+        </section>
+
+        <!-- Slajd 5 -->
+        <section id="nawiazania" class="karta">
+            <h2>5. Nawiązania i podsumowanie</h2>
+            <p>Motyw Syzyfa pojawia się w wielu książkach i dziełach sztuki:</p>
+            <table>
+                <tr>
+                    <th>Tytuł / Autor</th>
+                    <th>O co chodzi?</th>
+                </tr>
+                <tr>
+                    <td><strong>„Syzyfowe prace”</strong><br>Stefan Żeromski (lektura)</td>
+                    <td>Książka opowiada o rusyfikacji polskiej młodzieży w zaborze rosyjskim. Działania zaborców, którzy chcieli zmusić Polaków do zapomnienia o własnym języku i historii, okazały się bezskuteczne – czyli były „syzyfową pracą”.</td>
+                </tr>
+                <tr>
+                    <td><strong>„Mit Syzyfa”</strong><br>Albert Camus</td>
+                    <td>Filozof zastanawia się nad sensem życia i pokazuje, że mimo trudów trzeba się nie poddawać.</td>
+                </tr>
+                <tr>
+                    <td><strong>Obraz „Syzyf”</strong><br>Tycjan</td>
+                    <td>Słynny obraz przedstawiający Syzyfa niosącego wielki głaz pod górę.</td>
+                </tr>
+            </table>
+            <p style="margin-top: 15px;"><strong>Wniosek z mitu:</strong> Nie da się oszukać śmierci ani przeznaczenia, a każdy człowiek musi kiedyś ponieść konsekwencje swoich czynów.</p>
+        </section>
+
+    </div>
+
+    <div class="kontrolki-slajdow">
+        <button onclick="zmienSlajd(-1)">&#8592; Poprzedni</button>
+        <span id="licznik-slajdow">Slajd 1 / 5</span>
+        <button onclick="zmienSlajd(1)">Następny &#8594;</button>
+        <button class="btn-wyjscie" onclick="wylaczSlajdy()">Wyjdź ze slajdów</button>
+    </div>
+
+    <footer>
+        Prezentacja na lekcję języka polskiego • Wykonał: [Ksawery Ochlik]
+    </footer>
+
+    <script>
+        let aktualnySlajd = 0;
+        const slajdy = document.querySelectorAll('.karta');
+        const licznik = document.getElementById('licznik-slajdow');
+
+        function wlaczSlajdy() {
+            document.body.classList.add('tryb-slajdy');
+            aktualnySlajd = 0;
+            pokazSlajd(aktualnySlajd);
+        }
+
+        function wylaczSlajdy() {
+            document.body.classList.remove('tryb-slajdy');
+            slajdy.forEach(s => s.classList.add('aktywny'));
+        }
+
+        function pokazSlajd(n) {
+            slajdy.forEach(s => s.classList.remove('aktywny'));
+            slajdy[n].classList.add('aktywny');
+            licznik.textContent = `Slajd ${n + 1} / ${slajdy.length}`;
+        }
+
+        function zmienSlajd(kierunek) {
+            aktualnySlajd += kierunek;
+            if (aktualnySlajd < 0) aktualnySlajd = slajdy.length - 1;
+            if (aktualnySlajd >= slajdy.length) aktualnySlajd = 0;
+            pokazSlajd(aktualnySlajd);
+        }
+
+        // Sterowanie strzałkami z klawiatury w trybie prezentacji
+        document.addEventListener('keydown', function(e) {
+            if (!document.body.classList.contains('tryb-slajdy')) return;
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                zmienSlajd(1);
+            } else if (e.key === 'ArrowLeft') {
+                zmienSlajd(-1);
+            } else if (e.key === 'Escape') {
+                wylaczSlajdy();
+            }
+        });
+    </script>
+
+</body>
+</html>
